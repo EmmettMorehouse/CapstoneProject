@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- side navbar -->
+<div class="col-sm-2 sidenav">
+    <p><a href="#">Room 1</a></p>
+    <p><a href="#">Room 2</a></p>
+    <p><a href="#">Room 3</a></p>
+</div>
+<div class="col-sm-8 text-left">
+    <!-- room data table -->
+    <table class="table table-bordered">
+        <tr>
+            <th colspan="3" class="text-center">Room Number #</th>
+        </tr>
+        <tr>
+          <th class="text-center">Time/Date</th>
+          <th class="text-center">Voltage</th> 
+          <th class="text-center">Decibels</th>
+        </tr>
+        <!-- room data goes here -->
+      </table>
+</div>
+{% endblock%}
