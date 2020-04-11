@@ -17,7 +17,8 @@ const char* pass = myPASS;
 int status = WL_IDLE_STATUS;
 
 // MQTT Connection Variables
-const char* myServer = mqttServer;
+const char* mqtt_server = "192.168.1.184";
+
 const char* subTopic = "arduino/sound/sensor";
 const char* pubTopic = "arduino/sound/sensor";
 
@@ -69,22 +70,19 @@ void reconnect()
   while (!client.connected()) 
   {
     Serial.print("Attempting MQTT connection...");
-    // Create a random client ID
-    String clientId = "ArduinoClient-";
-    clientId += String(random(0xffff), HEX);
     // Attempt to connect
-    if (client.connect(clientId.c_str())) 
+    if (client.connect("Mosquitto"))
     {
       Serial.println("connected");
-      // ... and resubscribe
       client.subscribe(subTopic);
-    } else 
+    } 
+    else 
     {
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
       // Wait 5 seconds before retrying
-      delay(10000);
+      delay(5000);
     }
   }
 }
@@ -92,7 +90,7 @@ void reconnect()
 void setup() {
   Serial.begin(9600);
   setup_wifi();
-  client.setServer(myServer, 1833);
+  client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
 }
 
@@ -105,6 +103,7 @@ void loop() {
   
   sensorValue = analogRead(sensorPin);
   decibalValue = (sensorValue+83.2037) / 11.003; // convert analog to decibal
+  Serial.println(sensorValue, DEC); // print for testing
   Serial.println(decibalValue, DEC); // print for testing
 
   char payLoad[1];
@@ -113,5 +112,5 @@ void loop() {
   char toSend[2];
   itoa(sensorValue, toSend, 10);
   client.publish(pubTopic, toSend);
-  delay(1000); // read once per second
+  delay(10000); // read once per second
 }
