@@ -22,28 +22,21 @@ mongodbClient.connect('mongodb://localhost:27017/', function (err, client) {
   client=mqtt.connect({ host: "192.168.1.184", port: 1883 });
   client.subscribe(deviceRoot+"+");
   //client.on('message', insertEvent);
-  client.on('message', (packet) => {
-    message = parseInt(packet.payload)
-    console.log(message)
-    collection.insertOne(
-      {voltage:message, datetime:new Date() }
-    )
-  })
-}); 
+  client.on('message', insertEvent); 
+});
 
 //function that displays the data in the MongoDataBase
-// function insertEvent(topic, payload) {
-//   console.log("Topic: " + topic)
-//   console.log(payload)
-//    collection.insertOne(
-//    { voltage:payload, datetime:new Date() },
-//    { upsert:true },
+function insertEvent(topic, payload) {
+  var toDB = parseFloat(payload)
+  console.log(toDB)
+  collection.insertOne(
+  { analogValue:toDB, datetime:new Date() },
+  { upsert:true },
 
-//    function(err,docs) {  
-//    if(err) {
-//       console.log("Insert fail")	
-//     }
-//  }
-//  );
-
-// }
+  function(err,docs) {  
+  if(err) {
+    console.log("Insert fail")	
+    }
+ }
+ );
+}

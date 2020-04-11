@@ -3,7 +3,7 @@
  * 03/28/2020
  * Kent State University Capstone Project
  */
-
+ 
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <PubSubClient.h>
@@ -26,10 +26,12 @@ const char* pubTopic = "arduino/sound/sensor";
 int sensorPin = A0;
 int sensorValue = 0;
 int decibalValue = 0;
-String soundString;
+int voltage = 0;
 
 const char payLoad = (const char)sensorValue;
+
 ///////////////////////////////////////////
+
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
 
@@ -102,15 +104,12 @@ void loop() {
   client.loop();
   
   sensorValue = analogRead(sensorPin);
-  decibalValue = (sensorValue+83.2037) / 11.003; // convert analog to decibal
   Serial.println(sensorValue, DEC); // print for testing
-  Serial.println(decibalValue, DEC); // print for testing
+  
+  char message[56];
+  sprintf(message, " %d ", voltage);
+  Serial.println(message);
+  client.publish(pubTopic, message);
 
-  char payLoad[1];
-  itoa(sensorValue, payLoad, 10);
-  Serial.println(payLoad); // print for testing
-  char toSend[2];
-  itoa(sensorValue, toSend, 10);
-  client.publish(pubTopic, toSend);
-  delay(10000); // read once per second
+  delay(5000); // read once per 5 second
 }
