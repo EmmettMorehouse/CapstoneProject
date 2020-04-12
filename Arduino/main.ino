@@ -26,9 +26,6 @@ const char* pubTopic = "arduino/sound/sensor";
 int sensorPin = A0;
 int sensorValue = 0;
 int decibalValue = 0;
-int voltage = 0;
-
-const char payLoad = (const char)sensorValue;
 
 ///////////////////////////////////////////
 
@@ -104,10 +101,9 @@ void loop() {
   client.loop();
   
   sensorValue = analogRead(sensorPin);
-  Serial.println(sensorValue, DEC); // print for testing
   
   char message[56];
-  sprintf(message, " %d ", voltage);
+  sprintf(message, " %d ", sensorValue);
   Serial.println(message);
   client.publish(pubTopic, message);
 

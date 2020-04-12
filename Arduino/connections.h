@@ -6,4 +6,3 @@
 
  char mySSID[] = "MySpectrumWiFi20-2G";
  char myPASS[] = "domainmarket512";
- char mqttServer[] = "127.0.0.1";
