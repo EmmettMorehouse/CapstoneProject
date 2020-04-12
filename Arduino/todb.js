@@ -4,11 +4,12 @@
  * Kent State University Capstone Project
  */
 
-var myConnection = require('./connection');
+require('dotenv').config({ path: '../.env' })
+const mongoURI = process.env.mongoURI
 var mqtt = require('mqtt'); //includes mqtt server 
 var mongodb = require('mongodb'); // includes mongoDB 
 var mongodbClient = mongodb.MongoClient;
-var mongodbURL = dbConnection;
+var mongodbURL = mongoURI
 var deviceRoot = "arduino/sound/"; //deviceroot is topic name given in arduino code 
 var collection,client; //initialise collection and client
 var assert = require('assert');

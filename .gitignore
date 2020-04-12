@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 Arduino/connections.h
 Arduino/connection.js
+.vscode/launch.json
