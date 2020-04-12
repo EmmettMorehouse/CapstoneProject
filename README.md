@@ -7,6 +7,16 @@ $ pip install -r requirements.txt
 
 $ flask run
 
+## Arduino Requirements
+This project requires additional libraries that may be installed from the Arduino IDE using Tools -> Manage Libraries...
+The following libraries must be included:
+<SPI.h>
+<WiFiNINA.h>
+<PubSubClient.h>
+
+It is also recommended to create a connections file for your WiFi information and MQTT information if it is not locally hosted.
+"connections.h"
+
 ## Mosquitto MQTT Setup
 Install Nodejs from this site: https://nodejs.org/en/download/
 This project uses Node v10.16.0

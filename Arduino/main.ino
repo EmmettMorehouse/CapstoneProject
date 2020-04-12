@@ -25,7 +25,6 @@ const char* pubTopic = "arduino/sound/sensor";
 // Sensor Variables
 int sensorPin = A0;
 int sensorValue = 0;
-int decibalValue = 0;
 
 ///////////////////////////////////////////
 
