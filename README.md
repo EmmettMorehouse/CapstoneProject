@@ -2,6 +2,7 @@
 This project is a group capstone project for Kent State University.
 ## Flask Setup
 To run project, install locally using pip
+
 $ pip install -r requirements.txt
 $ flask run
 
@@ -21,5 +22,5 @@ Once your MongoDB is created along with a collection you may use MongoDB Charts 
 https://docs.mongodb.com/charts/saas/
 This project uses Mongo v4.2.3, this is a community version.
 
-##Project Specific Topics
+## Project Specific Topics
 This project for demonstration purposes is running on a local Macintosh machine and the todb.js file must be started manually. The Arduino sensor system must also be connected to the machine via USB port. If used elsewhere it is recommended to create a virtual server and setup the Arduino in a way to run while connected to a separate power supply such as a traditional wall socket. The todb.js program would have to run forever on a server to send database from the MQTT it is subscribed to to the MongoDB collection.
