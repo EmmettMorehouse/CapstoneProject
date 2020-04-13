@@ -28,8 +28,9 @@ mongodbClient.connect(mongodbURL, function (err, client) {
 });
 
 //function that displays the data in the MongoDataBase
-function insertEvent(payload) {
+function insertEvent(topic, payload) {
   var toDB = parseFloat(payload)
+  console.log(toDB)
   var date = new Date()
   var localDateTime = date.toLocaleString('en-US')
   collection.insertOne(
