@@ -1,5 +1,9 @@
 # CapstoneProject
 This project is a group capstone project for Kent State University.
+
+## Repository Organization
+app.py is the main Flask application used to run the user interface along with files in the static and templates folders. The "Arduino" folder contains the Arduino.ino, node.js, and connection files.
+
 ## Flask Setup
 To run project, install locally using pip
 
