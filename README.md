@@ -7,6 +7,11 @@ $ pip install -r requirements.txt
 
 $ flask run
 
+## Node.js 
+The node.js file must be running in conjunction with the Arduiono code to receive the published MQTT topic and insert the published data along with the current date-time to the MongoDB collection. 
+
+$ node todb.js
+
 ## Arduino Requirements
 This project requires additional libraries that may be installed from the Arduino IDE using Tools -> Manage Libraries...
 The following libraries must be included:
